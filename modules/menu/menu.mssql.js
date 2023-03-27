@@ -19,9 +19,26 @@ class MenuMSSql {
     }
 
     async addMenus(menuData) {
+
+        if (typeof (menuData.name) != "string") {
+            return {
+                "statuscode": 400,
+                "message": "name is must string!",
+            };
+        }
+
+        if (typeof (menuData.price) != "number") {
+            return {
+                "statuscode": 400,
+                "message": "price is must number!"
+            };
+        }
+
         const conn = await mssqlCon.getConn();
         const res = await conn.request()
             .query(`INSERT INTO MsMenu (Name, Price, Photo, Carbo, Protein) VALUES ('${menuData.name}', '${menuData.price}', '-', 0, 0)`);
+
+        res["statuscode"] = 200;
         return res;
     }
 }
