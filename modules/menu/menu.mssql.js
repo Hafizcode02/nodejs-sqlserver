@@ -4,6 +4,18 @@ const mssqlCon = require('../../dbconnection');
 const hashids = new Hashids('lks23', 16)
 
 class MenuMSSql {
+
+    async checkExistedData(id) {
+        const conn = await mssqlCon.getConn();
+        const res = await conn.request().query(`SELECT * FROM MsMenu WHERE Id=${hashids.decode(id)}`);
+        console.log(res);
+
+        if (res) {
+            return true;
+        }
+        return false;
+    }
+
     async getAllMenus() {
         const conn = await mssqlCon.getConn();
         const res = await conn.request().query('SELECT Id, Name, Price FROM MsMenu');
@@ -45,10 +57,17 @@ class MenuMSSql {
 
     async updateMenus(menuData, id) {
 
-        if (id == "" || id == null) {
+        if ((id.trim().length <= 15) || Object.keys(hashids.decode(id)).length === 0) {
             return {
                 "statuscode": 400,
-                "message": "Id Must Filled!"
+                "message": "An Error Occured with Id!"
+            }
+        }
+
+        if (!this.checkExistedData(id)) {
+            return {
+                "statuscode": 404,
+                "message": "Data Not Found!"
             }
         }
 
@@ -77,10 +96,10 @@ class MenuMSSql {
 
     async deleteMenus(id) {
 
-        if (id == "" || id == null) {
+        if ((id.trim().length <= 15) || Object.keys(hashids.decode(id)).length === 0) {
             return {
                 "statuscode": 400,
-                "message": "Id Must Filled!"
+                "message": "An Error Occured with Id!"
             }
         }
 
@@ -92,7 +111,7 @@ class MenuMSSql {
             res["statuscode"] = 200;
             res["message"] = "Menu Deleted Successfully";
             return res;
-        }else{
+        } else {
             res["statuscode"] = 404;
             res["message"] = "Menu List Not Found";
             return res;
