@@ -9,6 +9,16 @@ class Menu {
             console.log(error);
         }
     }
+
+    async addMenus(req, res) {
+        try {
+            const output = await menuMssql.addMenus(req.body);
+            res.send(output);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new Menu();

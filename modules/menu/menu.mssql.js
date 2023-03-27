@@ -17,5 +17,12 @@ class MenuMSSql {
 
         return expectedResult;
     }
+
+    async addMenus(menuData) {
+        const conn = await mssqlCon.getConn();
+        const res = await conn.request()
+            .query(`INSERT INTO MsMenu (Name, Price, Photo, Carbo, Protein) VALUES ('${menuData.name}', '${menuData.price}', '-', 0, 0)`);
+        return res;
+    }
 }
 module.exports = new MenuMSSql();
