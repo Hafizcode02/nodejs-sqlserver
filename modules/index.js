@@ -5,6 +5,9 @@ class Module {
     init(){
         const menuController = require('./menu/menu.controller');
         new menuController(this.app);
+
+        const userController = require('./user/user.controller');
+        new userController(this.app);
     }
 }
 
