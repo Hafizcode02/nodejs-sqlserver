@@ -8,7 +8,6 @@ class MenuMSSql {
     async checkExistedData(id) {
         const conn = await mssqlCon.getConn();
         const res = await conn.request().query(`SELECT * FROM MsMenu WHERE Id=${hashids.decode(id)}`);
-        console.log(res);
 
         if (res) {
             return true;
