@@ -6,6 +6,7 @@ class User {
             const output = await userMSSql.getAllUsers();
             res.send(output);
         } catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!"});
             console.log(error);
         }
     }

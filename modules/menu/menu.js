@@ -6,6 +6,7 @@ class Menu {
             const output = await menuMssql.getAllMenus();
             res.send(output);
         } catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!"});
             console.log(error);
         }
     }
@@ -16,6 +17,7 @@ class Menu {
             res.send(output);
         }
         catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!"});
             console.log(error);
         }
     }
@@ -30,6 +32,7 @@ class Menu {
             res.send(output);
         }
         catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!"});
             console.log(error);
         }
     }
@@ -44,6 +47,7 @@ class Menu {
             res.send(output);
         }
         catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!"});
             console.log(error);
         }
     }
