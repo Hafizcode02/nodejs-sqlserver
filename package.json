@@ -14,7 +14,8 @@
     "hashids": "^2.2.11",
     "jsonwebtoken": "^9.0.0",
     "msnodesqlv8": "^3.1.0",
-    "mssql": "^6.2.1"
+    "mssql": "^6.2.1",
+    "randomstring": "^1.2.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
