@@ -4,8 +4,8 @@ class DBConnection {
     async getConn() {
         try {
             return await sql.connect({
-                database: 'LKSJabar2021',
-                server: 'DESKTOP-UUUQOK8',
+                database: 'LKSJabar2021', // Nama Databasenya
+                server: 'DESKTOP-UUUQOK8', // Nama Instance Servernya
                 driver: 'msnodesqlv8',
                 options: {
                     trustedConnection: true
