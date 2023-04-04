@@ -28,7 +28,7 @@ class UserMSSql {
     async login(userData) {
         if (userData.email && userData.password) {
             const conn = await mssqlCon.getConn();
-            const res = await conn.request().query(`SELECT Id FROM MsEmployee WHERE Email='${userData.email}' AND Password='${userData.password}'`);
+            const res = await conn.request().query(`SELECT Id, Name FROM MsEmployee WHERE Email='${userData.email}' AND Password='${userData.password}'`);
             const result = res.recordset;
 
             if (result[0] === undefined) {
@@ -37,6 +37,7 @@ class UserMSSql {
                 return res;
             }
 
+            res["user"] = result[0].Name;
             res["statuscode"] = 200;
             res["message"] = "User Login Successfully";
             return res;
