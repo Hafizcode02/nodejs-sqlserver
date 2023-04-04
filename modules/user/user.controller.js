@@ -4,8 +4,9 @@ const router = express.Router();
 
 class UserController {
     constructor(app) {
-        router.get('/', user.getAllUsers);
-        app.use('/api/v1/users', router);
+        router.get('/users', user.getAllUsers);
+        router.post('/register', user.registerUser);
+        app.use('/api/v1/', router);
     }
 }
 
