@@ -13,6 +13,6 @@ Simple Node JS Rest API with SQL Server
 
 - {url}/api/v1/register POST
 - {url}/api/v1/login POST
-- {url}/api/v1/users GET (Get All Users - Test JWT Auth)
+- {url}/api/v1/users GET (Get All Users)
 
 Full Docs on Postman : https://documenter.getpostman.com/view/9385297/2s93RZM9sY
