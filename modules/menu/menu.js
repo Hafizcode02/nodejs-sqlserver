@@ -6,7 +6,7 @@ class Menu {
             const output = await menuMssql.getAllMenus();
             res.send(output);
         } catch (error) {
-            res.status(500).json({ error: "There are something wrong in the server!"});
+            res.status(500).json({ error: "There are something wrong in the server!" });
             console.log(error);
         }
     }
@@ -14,10 +14,26 @@ class Menu {
     async addMenus(req, res) {
         try {
             const output = await menuMssql.addMenus(req.body);
-            res.status(output.statuscode).json({message : output.message});
+            res.status(output.statuscode).json({ message: output.message });
         }
         catch (error) {
-            res.status(500).json({ error: "There are something wrong in the server!"});
+            res.status(500).json({ error: "There are something wrong in the server!" });
+            console.log(error);
+        }
+    }
+
+    async getMenuById(req, res) {
+        const id = req.params.id;
+        try {
+            if (!id) {
+                console.log('id not passed');
+            }
+            const output = await menuMssql.getMenuById(id);
+
+            res.status(output.statuscode).json({ message: output.message, data: output.recordset });
+        }
+        catch (error) {
+            res.status(500).json({ error: "There are something wrong in the server!" });
             console.log(error);
         }
     }
@@ -29,10 +45,10 @@ class Menu {
                 console.log('id not passed');
             }
             const output = await menuMssql.updateMenus(req.body, id);
-            res.status(output.statuscode).json({message : output.message});
+            res.status(output.statuscode).json({ message: output.message });
         }
         catch (error) {
-            res.status(500).json({ error: "There are something wrong in the server!"});
+            res.status(500).json({ error: "There are something wrong in the server!" });
             console.log(error);
         }
     }
@@ -44,10 +60,10 @@ class Menu {
                 console.log('id not passed');
             }
             const output = await menuMssql.deleteMenus(id);
-            res.status(output.statuscode).json({message : output.message});
+            res.status(output.statuscode).json({ message: output.message });
         }
         catch (error) {
-            res.status(500).json({ error: "There are something wrong in the server!"});
+            res.status(500).json({ error: "There are something wrong in the server!" });
             console.log(error);
         }
     }

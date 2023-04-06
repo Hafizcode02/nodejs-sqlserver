@@ -6,6 +6,7 @@ class MenuController {
     constructor(app) {
         router.get('/', menu.getAllMenus);
         router.post('/', menu.addMenus);
+        router.get('/:id', menu.getMenuById);
         router.put('/:id', menu.updateMenus);
         router.delete('/:id', menu.deleteMenus);
         app.use('/api/v1/menus', router);

@@ -54,6 +54,29 @@ class MenuMSSql {
         return res;
     }
 
+    async getMenuById(id) {
+        if ((id.trim().length <= 15) || Object.keys(hashids.decode(id)).length === 0) {
+            return {
+                "statuscode": 400,
+                "message": "An Error Occured with Id!"
+            }
+        }
+
+        const conn = await mssqlCon.getConn();
+        const res = await conn.request()
+            .query(`SELECT * FROM MsMenu WHERE Id=${hashids.decode(id)}`);
+
+        if (res.recordset.length != 0) {
+            res["statuscode"] = 200;
+            res["message"] = "success";
+        } else {
+            res["statuscode"] = 404;
+            res["message"] = "not found";
+        }
+
+        return res;
+    }
+
     async updateMenus(menuData, id) {
 
         if ((id.trim().length <= 15) || Object.keys(hashids.decode(id)).length === 0) {
