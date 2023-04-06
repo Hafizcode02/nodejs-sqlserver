@@ -2,7 +2,7 @@ const userMSSql = require('./user.mssql');
 const jsonwebtoken = require('jsonwebtoken');
 
 const JWT_SECRET =
-    "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu"; // Ini harusnya di bikin env terpisah
+    "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu"; // Ini harusnya di bikin env terpisah (bisa diganti juga)
 
 class User {
     async getAllUsers(req, res) {
