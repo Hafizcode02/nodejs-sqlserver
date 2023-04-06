@@ -13,6 +13,10 @@ class User {
         const authHeader = req.headers.authorization;
         const token = authHeader.split(" ")[1];
 
+        if(token === undefined){
+            return res.status(401).json({ error: "Invalid Signature!" });
+        }
+
         try {
             jsonwebtoken.verify(token, JWT_SECRET);
             const output = await userMSSql.getAllUsers();
