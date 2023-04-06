@@ -1,11 +1,11 @@
 # nodejs-sqlserver
 Simple Node JS Rest API with SQL Server
 
-#how to setup
+## How to Setup
 - npm install
 - Change database name and server name on dbconnection.js
 
-#api
+## API
 - {url}/api/v1/menus GET
 - {url}/api/v1/menus POST
 - {url}/api/v1/menus/{id} PUT
